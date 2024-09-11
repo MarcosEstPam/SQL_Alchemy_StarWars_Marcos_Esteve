@@ -38,33 +38,33 @@ class Movie(Base):
     __tablename__ = 'movies'
     
     id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)  # Título de la película
-    release_date = Column(DateTime, nullable=True)  # Fecha de estreno
+    title = Column(String, nullable=False)  
+    release_date = Column(DateTime, nullable=True)  
     
     # Relación muchos a muchos con personajes
     characters = relationship('Character', secondary=characters_movies, back_populates='movies')
 
 
-class Person(Base):
-    __tablename__ = 'person'
-    # Here we define columns for the table person
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
+# class Person(Base):
+#     __tablename__ = 'person'
+#     # Here we define columns for the table person
+#     # Notice that each column is also a normal Python instance attribute.
+#     id = Column(Integer, primary_key=True)
+#     name = Column(String(250), nullable=False)
 
-class Address(Base):
-    __tablename__ = 'address'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
-    id = Column(Integer, primary_key=True)
-    street_name = Column(String(250))
-    street_number = Column(String(250))
-    post_code = Column(String(250), nullable=False)
-    person_id = Column(Integer, ForeignKey('person.id'))
-    person = relationship(Person)
+# class Address(Base):
+#     __tablename__ = 'address'
+#     # Here we define columns for the table address.
+#     # Notice that each column is also a normal Python instance attribute.
+#     id = Column(Integer, primary_key=True)
+#     street_name = Column(String(250))
+#     street_number = Column(String(250))
+#     post_code = Column(String(250), nullable=False)
+#     person_id = Column(Integer, ForeignKey('person.id'))
+#     person = relationship(Person)
 
-    def to_dict(self):
-        return {}
+#     def to_dict(self):
+#         return {}
 
 ## Draw from SQLAlchemy base
 render_er(Base, 'diagram.png')
